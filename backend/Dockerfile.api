@@ -1,0 +1,20 @@
+FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
+WORKDIR /src
+COPY Portfolio.sln ./
+COPY src/Portfolio.Shared/Portfolio.Shared.csproj src/Portfolio.Shared/
+COPY src/Portfolio.Domain/Portfolio.Domain.csproj src/Portfolio.Domain/
+COPY src/Portfolio.Application/Portfolio.Application.csproj src/Portfolio.Application/
+COPY src/Portfolio.Infrastructure/Portfolio.Infrastructure.csproj src/Portfolio.Infrastructure/
+COPY src/Portfolio.API/Portfolio.API.csproj src/Portfolio.API/
+RUN dotnet restore src/Portfolio.API/Portfolio.API.csproj
+
+COPY . .
+RUN dotnet publish src/Portfolio.API/Portfolio.API.csproj -c Release -o /app/publish --no-restore
+
+FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS runtime
+WORKDIR /app
+COPY --from=build /app/publish .
+EXPOSE 8080
+ENV ASPNETCORE_URLS=http://+:8080
+HEALTHCHECK --interval=30s --timeout=5s --retries=3 CMD wget -qO- http://localhost:8080/api/v1/health || exit 1
+ENTRYPOINT ["dotnet", "Portfolio.API.dll"]

@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pramesh Bhattarai — Full-Stack Software Engineer</title>
+    <meta name="description" content="Personal portfolio of Pramesh Bhattarai, a Full-Stack Software Engineer based in Kathmandu, Nepal with 5+ years of experience building enterprise APIs, web applications, and SQL architectures." />
+    <meta property="og:title" content="Pramesh Bhattarai — Full-Stack Software Engineer" />
+    <meta property="og:description" content="Portfolio showcasing ASP.NET Core Web APIs, full-stack web engineering, SQL optimization, and software architecture by Pramesh Bhattarai." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('pb_portfolio_theme');
+          var theme = stored === 'light' || stored === 'dark' ? stored : 'dark';
+          document.documentElement.classList.toggle('dark', theme === 'dark');
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body class="bg-zinc-50 text-zinc-900 dark:bg-[#050505] dark:text-zinc-100 antialiased selection:bg-blue-600/30 selection:text-blue-200">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
